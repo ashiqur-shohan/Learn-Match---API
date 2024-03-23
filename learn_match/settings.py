@@ -29,13 +29,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://learn-match-api.onrender.com','https://*.127.0.0.1']
+
 #for cors
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500",
-]
-# CORS_ALLOW_ALL_ORIGINS: True
-# from geeks for geeks
+    "https://learn-match-api.onrender.com"
+]   
 # CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'tuition',
     'review',
     'application',
+    'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
     #for cors
@@ -58,10 +59,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     # for cors . eita commonmiddleware er upore thakte hobe
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
