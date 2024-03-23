@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework import viewsets,pagination
 from .models import TuitionModel
 from .serializers import TuitionSerializers
+from rest_framework import viewsets,pagination,filters
 # Create your views here.
 
 
@@ -15,3 +15,5 @@ class TuitionViewset(viewsets.ModelViewSet):
     queryset = TuitionModel.objects.all()
     serializer_class = TuitionSerializers
     pagination_class = TuitionPagination
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['grade','address']
