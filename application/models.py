@@ -9,5 +9,5 @@ class ApplicationModel(models.Model):
     confirm = models.BooleanField(default=False)
     
     def __str__(self) :
-        return f"{self.user.user.username} | {self.tuition.grade}"
+        return f"{self.teacher.user.username} | {self.tuition.grade}"
     
