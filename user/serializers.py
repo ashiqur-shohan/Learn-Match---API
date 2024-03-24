@@ -31,6 +31,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
         #account acctive er bishoy ta off kore rakhtesi. email er link click korle tahole account create korte parbe.
         account.is_active = False
         account.save()
+        TeacherModel.objects.create(
+            user = account
+        )
+        
         return account
 
 class UserLoginSerializer(serializers.Serializer):
