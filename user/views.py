@@ -28,7 +28,7 @@ class TeacherViewset(viewsets.ModelViewSet):
         user_id = self.request.query_params.get("user_id")
         if user_id:
             queryset = queryset.filter(user = user_id)
-
+        return queryset
 
 class UserRegistrationApiview(APIView):
     serializer_class = RegistrationSerializer
