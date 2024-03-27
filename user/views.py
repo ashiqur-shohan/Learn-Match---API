@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
-from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSerializer
+from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSerializer,ChangePasswordSerializer
 from .models import TeacherModel
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from rest_framework.status import HTTP_400_BAD_REQUEST
 
-from rest_framework import viewsets
+from rest_framework import viewsets,generics
 from rest_framework.views import APIView
 
 from rest_framework.authtoken.models import Token
@@ -98,3 +100,13 @@ class UserLogoutView(APIView):
         request.user.auth_token.delete()
         logout(request)
         return redirect('login')
+
+class ChangePasswordView(APIView):
+    def put(self, request):
+        serializer = ChangePasswordSerializer(data=request.data, context={'user': request.user})
+        if serializer.is_valid():
+            user = request.user
+            user.set_password(serializer.validated_data['new_password'])
+            user.save()
+            return Response({'message': 'Password changed successfully.'})
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)

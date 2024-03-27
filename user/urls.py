@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import include,path
-from .views import TeacherViewset,UserRegistrationApiview,UserLoginApiView,UserLogoutView,activate
+from .views import TeacherViewset,UserRegistrationApiview,UserLoginApiView,UserLogoutView,activate,ChangePasswordView
 
 
 router = DefaultRouter()
@@ -13,4 +13,5 @@ urlpatterns = [
     path('login/',UserLoginApiView.as_view(),name='login'),
     path('logout/',UserLogoutView.as_view(),name='logout'),
     path('active/<uid64>/<token>',activate,name='activate'),
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
 ]

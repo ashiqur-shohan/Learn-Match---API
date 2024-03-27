@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import TeacherModel
 from django.contrib.auth.models import User
+from rest_framework.validators import ValidationError
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +41,16 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    confirm_password = serializers.CharField(required=True)
+
+    def validate(self, data):
+        user = self.context.get('user')
+        if not user.check_password(data['old_password']):
+            raise ValidationError({'old_password': 'Wrong password.'})
+        if data['new_password'] != data['confirm_password']:
+            raise ValidationError({'new_password': 'Passwords do not match.'})
+        return data
