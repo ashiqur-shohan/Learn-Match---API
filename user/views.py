@@ -23,6 +23,11 @@ from django.template.loader import render_to_string
 class TeacherViewset(viewsets.ModelViewSet):
     queryset = TeacherModel.objects.all()
     serializer_class = TeacherSerializer
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user_id = self.request.query_params_get("user_id")
+        if user_id:
+            queryset = queryset.filter(user = user_id)
 
 
 class UserRegistrationApiview(APIView):

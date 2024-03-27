@@ -15,7 +15,7 @@ class TuitionPagination(pagination.PageNumberPagination):
 class TuitionViewset(viewsets.ModelViewSet):
     queryset = TuitionModel.objects.all()
     serializer_class = TuitionSerializers
-    pagination_class = TuitionPagination
+    # pagination_class = TuitionPagination
     filter_backends = [filters.SearchFilter,filters.OrderingFilter,DjangoFilterBackend]
     search_fields = ['grade','address']
     ordering_fields = ['salary']
