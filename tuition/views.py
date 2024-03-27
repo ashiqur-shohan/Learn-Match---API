@@ -20,3 +20,9 @@ class TuitionViewset(viewsets.ModelViewSet):
     search_fields = ['grade','address']
     ordering_fields = ['salary']
     filterset_fields = ['grade_slug', 'tuition_type','location']
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        tuition_id = self.request.query_params.get("tuition_id")
+        if tuition_id:
+            queryset = queryset.filter(id = tuition_id)
+        return queryset
