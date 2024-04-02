@@ -32,7 +32,8 @@ CSRF_TRUSTED_ORIGINS = ['https://learn-match-api.onrender.com','https://*.127.0.
 
 #for cors
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5500"
+    "http://127.0.0.1:5500",
+    "https://learn-match.netlify.app"
 ]   
 # CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
