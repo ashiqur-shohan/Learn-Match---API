@@ -13,10 +13,10 @@ TYPE = [
     ('OFFLINE','OFFLINE'),
 ]
 DAYS = [
-    ('3_Days', 3),
-    ('4_Days', 4),
-    ('5_Days', 5),
-    ('6_Days', 6),
+    ('3 Days', 3),
+    ('4 Days', 4),
+    ('5 Days', 5),
+    ('6 Days', 6),
 ]
 
 CATEGORY = [
