@@ -16,4 +16,4 @@ class TeacherModel(models.Model):
     mobile_no = models.CharField(max_length=12,null=True)
     education = models.CharField(choices =EDUCATION_TYPE,null=True  , max_length=12)
     def __str__(self) :
-        return self.user.username
+        return f"{self.user.username} | teacher-id:{self.id} | user-id:{self.user.id}"

@@ -26,6 +26,7 @@ class TeacherViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         user_id = self.request.query_params.get("user_id")
+        
         if user_id:
             queryset = queryset.filter(user = user_id)
         return queryset
