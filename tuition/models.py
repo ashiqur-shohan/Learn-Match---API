@@ -40,4 +40,4 @@ class TuitionModel(models.Model):
     tuition_duration = models.CharField(max_length=40,null=True)
     no_of_student = models.IntegerField(null=True)
     def __str__(self) :
-        return self.grade
+        return f"{self.id}"

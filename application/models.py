@@ -7,7 +7,7 @@ class ApplicationModel(models.Model):
     teacher = models.ForeignKey(TeacherModel, on_delete=models.CASCADE)
     tuition = models.ForeignKey(TuitionModel, on_delete=models.CASCADE)
     confirm = models.BooleanField(default=False)
-    
+     
     def __str__(self) :
         return f"{self.teacher.user.username} | {self.tuition.grade}"
     
