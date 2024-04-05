@@ -8,6 +8,11 @@ class TeacherSerializer(serializers.ModelSerializer):
         model = TeacherModel
         fields = "__all__"
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'email')
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(required=True)

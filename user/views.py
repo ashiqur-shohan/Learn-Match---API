@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSerializer,ChangePasswordSerializer
+from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSerializer,ChangePasswordSerializer,UserSerializer
 from .models import TeacherModel
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -38,9 +38,19 @@ class TeacherViewset(viewsets.ModelViewSet):
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
-        
 
-
+class UserViewSet(APIView):
+    # queryset = TeacherModel.objects.all()
+    serializer_class = UserSerializer    
+    def get_queryset(self,request,pk):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(pk = pk)
+        return queryset 
+    def get(self,request,pk):
+        data = User.objects.get(pk=pk)
+        serializer = UserSerializer(data)
+        return Response(serializer.data)
+    
 class UserRegistrationApiview(APIView):
     serializer_class = RegistrationSerializer
 
@@ -113,9 +123,10 @@ class UserLoginApiView(APIView):
 
 class UserLogoutView(APIView):
     def get(self,request):
-        request.user.auth_token.delete()
-        logout(request)
-        return redirect('login')
+        if self.request.user.is_authenticated():
+            request.user.auth_token.delete()
+            logout(request)
+            return redirect('login')
 
 class ChangePasswordView(APIView):
     def put(self, request):
