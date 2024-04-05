@@ -26,10 +26,20 @@ class TeacherViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         user_id = self.request.query_params.get("user_id")
-        
         if user_id:
             queryset = queryset.filter(user = user_id)
         return queryset
+    
+    def put(self,request):
+        user_id = self.request.query_params.get("user_id")
+        if user_id:
+            data = TeacherModel.objects.get(user=user_id)
+            serializers = TeacherSerializer(data, data=request.data)
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data)
+        
+
 
 class UserRegistrationApiview(APIView):
     serializer_class = RegistrationSerializer
