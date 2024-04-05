@@ -10,7 +10,7 @@ EDUCATION_TYPE = [
 ]
 
 class TeacherModel(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,unique=True)
     image = models.ImageField(upload_to="user/images",null=True)
     birth_date = models.DateField(null=True)
     mobile_no = models.CharField(max_length=12,null=True)
