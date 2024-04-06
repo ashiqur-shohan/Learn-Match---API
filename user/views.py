@@ -50,6 +50,12 @@ class UserViewSet(APIView):
         data = User.objects.get(pk=pk)
         serializer = UserSerializer(data)
         return Response(serializer.data)
+    def put(self,request,pk):
+        data = User.objects.get(pk=pk)
+        serializers = UserSerializer(data, data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
     
 class UserRegistrationApiview(APIView):
     serializer_class = RegistrationSerializer
