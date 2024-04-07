@@ -3,7 +3,7 @@ from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSeria
 from .models import TeacherModel
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from rest_framework.status import HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_204_NO_CONTENT
 
 from rest_framework import viewsets,generics
 from rest_framework.views import APIView
@@ -132,7 +132,9 @@ class UserLogoutView(APIView):
         if self.request.user.is_authenticated:
             request.user.auth_token.delete()
             logout(request)
-            return redirect('login')
+            return Response({'message': 'Logout successful.'}, status=HTTP_204_NO_CONTENT)
+
+
 
 class ChangePasswordView(APIView):
     def put(self, request):
