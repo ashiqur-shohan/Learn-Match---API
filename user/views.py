@@ -129,10 +129,9 @@ class UserLoginApiView(APIView):
 
 class UserLogoutView(APIView):
     def get(self,request):
-        if self.request.user.is_authenticated:
-            request.user.auth_token.delete()
-            logout(request)
-            return Response({'message': 'Logout successful.'}, status=HTTP_204_NO_CONTENT)
+        request.user.auth_token.delete()
+        logout(request)
+        return Response({'message': 'Logout successful.'}, status=HTTP_204_NO_CONTENT)
 
 
 
