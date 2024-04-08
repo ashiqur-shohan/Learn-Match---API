@@ -3,7 +3,8 @@ from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSeria
 from .models import TeacherModel
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_204_NO_CONTENT,HTTP_200_OK
+from rest_framework.decorators import api_view
 
 from rest_framework import viewsets,generics
 from rest_framework.views import APIView
@@ -128,15 +129,25 @@ class UserLoginApiView(APIView):
         return Response(serializer.errors)
 
 class UserLogoutView(APIView):
-    def get(self,request):
-        if request.is_authenticated():
-            request.user.auth_token.delete()
-            logout(request)
-            return Response({'message': 'Logout successful.'}, status=HTTP_204_NO_CONTENT)
-        else:
-            return Response({'message': 'You are already logged out.'}, status=HTTP_400_BAD_REQUEST)
+    def post(self,request):
+        user_id = request.data.get("user_id")
+        # print(user_id)
+        users = User.objects.get(pk=user_id)
+        # print(users)
+        users.auth_token.delete()
+        logout(request)
+        return Response({'message': 'Logout successful.',}, status=HTTP_204_NO_CONTENT)
+        # else:
+        #     return Response({'message': 'You are already logged out.'}, status=HTTP_400_BAD_REQUEST)
 
 
+@api_view(["POST",])
+def logout_view(request):
+    if request.method == "POST":
+        # users = User.objects.get(username=username)
+        request.user.auth_token.delete()
+        logout(request)
+        return Response({'message': 'Logout successful.'}, status=HTTP_200_OK)
 
 
 class ChangePasswordView(APIView):
