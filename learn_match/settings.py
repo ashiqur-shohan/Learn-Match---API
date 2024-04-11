@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import environ
+import os
 env = environ.Env()
 environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -139,6 +140,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/'
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

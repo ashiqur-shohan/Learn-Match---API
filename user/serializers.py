@@ -1,11 +1,16 @@
 from rest_framework import serializers
-from .models import TeacherModel
+from .models import TeacherModel,TeacherImageModel
 from django.contrib.auth.models import User
 from rest_framework.validators import ValidationError
 
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherModel
+        fields = "__all__"
+
+class TeacherImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherImageModel
         fields = "__all__"
 
 class UserSerializer(serializers.ModelSerializer):

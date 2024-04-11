@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSerializer,ChangePasswordSerializer,UserSerializer
-from .models import TeacherModel
+from .serializers import TeacherSerializer,RegistrationSerializer,UserLoginSerializer,ChangePasswordSerializer,UserSerializer,TeacherImageSerializer
+from .models import TeacherModel,TeacherImageModel
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from rest_framework.status import HTTP_400_BAD_REQUEST,HTTP_204_NO_CONTENT,HTTP_200_OK
@@ -36,9 +36,30 @@ class TeacherViewset(viewsets.ModelViewSet):
         if user_id:
             data = TeacherModel.objects.get(user=user_id)
             serializers = TeacherSerializer(data, data=request.data)
+            print(serializers)
+            print("inside user_id before serializers")
             if serializers.is_valid():
                 serializers.save()
                 return Response(serializers.data)
+            return Response(serializers.errors, status=HTTP_400_BAD_REQUEST)
+
+class TeacherImageView(APIView):
+    serializer_class = TeacherImageSerializer
+    def get_queryset(self,request,pk):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=pk)
+        return queryset
+    def get(self,request,pk):
+        data = TeacherImageModel.objects.get(user=pk)
+        serializer = TeacherImageSerializer(data , context={'request': request})
+        return Response(serializer.data)
+    def put(self,request,pk):
+        data = TeacherImageModel.objects.get(user=pk)
+        serializers = TeacherImageSerializer(data, data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response (serializers.data)
+        return Response({"error":"Input wrong"},HTTP_400_BAD_REQUEST)
 
 class UserViewSet(APIView):
     # queryset = TeacherModel.objects.all()
@@ -131,9 +152,7 @@ class UserLoginApiView(APIView):
 class UserLogoutView(APIView):
     def post(self,request):
         user_id = request.data.get("user_id")
-        # print(user_id)
         users = User.objects.get(pk=user_id)
-        # print(users)
         users.auth_token.delete()
         logout(request)
         return Response({'message': 'Logout successful.',}, status=HTTP_204_NO_CONTENT)
@@ -152,10 +171,14 @@ def logout_view(request):
 
 class ChangePasswordView(APIView):
     def put(self, request):
-        serializer = ChangePasswordSerializer(data=request.data, context={'user': request.user})
+        user_id = request.data.get("user_id")
+        users = User.objects.get(pk=user_id)
+        serializer = ChangePasswordSerializer(data=request.data, context={'user': users})
         if serializer.is_valid():
-            user = request.user
-            user.set_password(serializer.validated_data['new_password'])
-            user.save()
+            
+            # user = request.user
+            users.set_password(serializer.validated_data['new_password'])
+            users.save()
             return Response({'message': 'Password changed successfully.'})
+        print("before return error")
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
