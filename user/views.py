@@ -43,6 +43,16 @@ class TeacherViewset(viewsets.ModelViewSet):
                 return Response(serializers.data)
             return Response(serializers.errors, status=HTTP_400_BAD_REQUEST)
 
+@api_view(["POST",])
+def image_post(request,pk):
+        
+        serializers = TeacherImageSerializer(data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response (serializers.data)
+        return Response({"error":"Input wrong"},HTTP_400_BAD_REQUEST)
+
+
 class TeacherImageView(APIView):
     serializer_class = TeacherImageSerializer
     def get_queryset(self,request,pk):
@@ -50,9 +60,12 @@ class TeacherImageView(APIView):
         queryset = queryset.filter(user=pk)
         return queryset
     def get(self,request,pk):
-        data = TeacherImageModel.objects.get(user=pk)
+        data_list = TeacherImageModel.objects.filter(user=pk)
+        data_length = len(data_list) - 1
+        data = data_list[data_length]
         serializer = TeacherImageSerializer(data , context={'request': request})
         return Response(serializer.data)
+    
     def put(self,request,pk):
         data = TeacherImageModel.objects.get(user=pk)
         serializers = TeacherImageSerializer(data, data = request.data)
@@ -153,6 +166,7 @@ class UserLogoutView(APIView):
     def post(self,request):
         user_id = request.data.get("user_id")
         users = User.objects.get(pk=user_id)
+        # request.user.auth_token.delete()
         users.auth_token.delete()
         logout(request)
         return Response({'message': 'Logout successful.',}, status=HTTP_204_NO_CONTENT)
