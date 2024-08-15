@@ -17,7 +17,7 @@ class TeacherModel(models.Model):
     education = models.CharField(choices =EDUCATION_TYPE,null=True  , max_length=12)
     def __str__(self) :
         return f"{self.user.username} | teacher-id:{self.id} | user-id:{self.user.id}"
-
+    
 class TeacherImageModel(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     teacher = models.ForeignKey(TeacherModel,on_delete=models.CASCADE)

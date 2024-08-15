@@ -8,7 +8,9 @@ from rest_framework.decorators import api_view
 
 from rest_framework import viewsets,generics
 from rest_framework.views import APIView
-
+from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate,login,logout
 
@@ -19,7 +21,6 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
-# Create your views here.
 
 class TeacherViewset(viewsets.ModelViewSet):
     queryset = TeacherModel.objects.all()
@@ -161,24 +162,12 @@ class UserLoginApiView(APIView):
         return Response(serializer.errors)
 
 class UserLogoutView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def post(self,request):
-        user_id = request.data.get("user_id")
-        users = User.objects.get(pk=user_id)
-        # request.user.auth_token.delete()
-        users.auth_token.delete()
-        logout(request)
-        return Response({'message': 'Logout successful.',}, status=HTTP_204_NO_CONTENT)
-        # else:
-        #     return Response({'message': 'You are already logged out.'}, status=HTTP_400_BAD_REQUEST)
-
-
-@api_view(["POST",])
-def logout_view(request):
-    if request.method == "POST":
-        # users = User.objects.get(username=username)
         request.user.auth_token.delete()
         logout(request)
-        return Response({'message': 'Logout successful.'}, status=HTTP_200_OK)
+        return Response({'message': 'Logout successful.',}, status=HTTP_204_NO_CONTENT)
 
 
 class ChangePasswordView(APIView):

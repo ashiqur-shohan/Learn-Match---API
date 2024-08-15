@@ -49,15 +49,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
-    'tuition',
-    'review',
-    'application',
+    # extra
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
     #for cors
     'corsheaders',
+    # local
+    'user',
+    'tuition',
+    'review',
+    'application',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +155,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = env("EMAIL")
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}

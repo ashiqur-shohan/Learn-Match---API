@@ -41,3 +41,5 @@ class TuitionModel(models.Model):
     no_of_student = models.IntegerField(null=True)
     def __str__(self) :
         return f"{self.id}"
+    class Meta:
+        ordering = ['-id']
