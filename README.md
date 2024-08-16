@@ -1,7 +1,19 @@
-live link = https://learn-match-api.onrender.com
 # Learn Match
 
 Learn Match is a tuition finding platform that connects tutors with tutoring opportunities. The primary purpose of this application is to streamline the process of finding and applying for tutoring jobs, making it easier for educators to secure employment.
+
+## Table of Contents
+
+- [Features](#features)
+- [Project Links](#project-links)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Installation and Run the Project](#installation-and-run-the-project)
+- [API Endpoints](#api-endpoints)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [Contact](#contact)
+- [License](#license)
 
 ## Features
 
@@ -10,6 +22,15 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 - Tuition job search and filtering
 - Application submission for tutors
 - Dashboard with statistics
+
+## Project Links
+
+### Live Link
+- Live API: [https://learn-match-api.onrender.com](https://learn-match-api.onrender.com)
+
+### Frontend Part
+- Source Code: [https://github.com/ashiqur-shohan/Learn-Match](https://github.com/ashiqur-shohan/Learn-Match)
+- Live link: [https://learn-match.netlify.app/](https://learn-match.netlify.app/)
 
 ## Technologies Used
 
@@ -29,25 +50,28 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 1. Clone the repository:
 ```bash
 git clone https://github.com/ashiqur-shohan/Learn-Match---API.git
+```
+2. Navigate to the project directory:
+> **Important:** This step ensures all following commands are executed in the correct project directory.
+```bash
 cd learn-match
 ```
-
-2. Install the required dependencies:
+3. Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-3. Run migrations:
+4. Run migrations:
 ```bash
 python manage.py migrate
 ```
-4. Start the development server:
+5. Start the development server:
 ```bash
 python manage.py runserver
 ```
 
 The application should now be running at 
 ```bash
-`http://localhost:8000`
+http://localhost:8000
 ```
 
 ## API Endpoints
@@ -75,6 +99,48 @@ The application should now be running at
 ### Dashboard
 - `GET /api/dashboard/stats/`: Retrieve dashboard statistics (total teachers, applications, live tuitions)
 
+
+## Deployment
+
+This project is deployed using [Render](https://render.com). To deploy your own instance of Learn Match, follow these steps:
+
+1. **Prerequisites**
+   - A Render account
+   - Your project pushed to a Git repository (GitHub, GitLab, or Bitbucket)
+
+2. **Setup on Render**
+   - Log in to your Render dashboard
+   - Click on "New +" and select "Web Service"
+   - Connect your Git repository
+   - Select the branch you want to deploy
+
+3. **Configuration**
+   - Set the Environment to "Python"
+   - Set the Build Command to `pip install -r requirements.txt`
+   - Set the Start Command to `python manage.py runserver 0.0.0.0:80`
+
+4. **Environment Variables**
+   - Add the following environment variables:
+     - `DEBUG`: Set to `False` for production
+     - `SECRET_KEY`: Your Django secret key
+     - `ALLOWED_HOSTS`: Add your Render URL and any custom domains
+
+5. **Database Setup**
+   - If using Render's PostgreSQL, add the `DATABASE_URL` to your environment variables
+   - Run migrations manually or add a build script
+
+6. **Static Files**
+   - Set up static file serving through Render or a CDN
+
+7. **Custom Domain (Optional)**
+   - Add your custom domain in the Render dashboard
+   - Update your DNS settings as per Render's instructions
+
+For more detailed instructions, refer to Render's [Python deployment guide](https://render.com/docs/deploy-python).
+
+**Note:** Make sure to update your `settings.py` file to use environment variables for sensitive information and to accommodate the production environment.
+
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -82,7 +148,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Contact
 
 For any inquiries, please contact:
-Ashiqur Rahman - ashiqur.shohan@gmail.com
+- E-mail - ashiqur.shohan@gmail.com
+- What's app - +8801633640145
 
 ## License
 
