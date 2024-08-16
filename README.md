@@ -24,19 +24,31 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 - Python 3.x
 - pip
 
-## Installation
+## Installation and Run the Project
 
 1. Clone the repository:
+```bash
 git clone https://github.com/ashiqur-shohan/Learn-Match---API.git
 cd learn-match
-2. Install the required dependencies:
-pip install -r requirements.txt
-3. Run migrations:
-python manage.py migrate
-4. Start the development server:
-python manage.py runserver
+```
 
-The application should now be running at `http://localhost:8000`.
+2. Install the required dependencies:
+```bash
+pip install -r requirements.txt
+```
+3. Run migrations:
+```bash
+python manage.py migrate
+```
+4. Start the development server:
+```bash
+python manage.py runserver
+```
+
+The application should now be running at 
+```bash
+`http://localhost:8000`
+```
 
 ## API Endpoints
 
