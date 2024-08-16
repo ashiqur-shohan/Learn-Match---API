@@ -4,18 +4,18 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 
 ## Table of Contents
 
-- [Features](#features)
-- [Project Links](#project-links)
-- [Technologies Used](#technologies-used)
-- [Prerequisites](#prerequisites)
-- [Installation and Run the Project](#installation-and-run-the-project)
-- [API Endpoints](#api-endpoints)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [Contact](#contact)
-- [License](#license)
+- [🚀 Features](#🚀-features)
+- [🔗 Project Links](#🔗-project-links)
+- [🛠️ Technologies Used](#🛠️-technologies-used)
+- [📋 Prerequisites](#📋-prerequisites)
+- [📦 Installation and Run the Project](#📦-installation-and-run-the-project)
+- [🛣️ API Endpoints](#🛣️-api-endpoints)
+- [🚀 Deployment](#🚀-deployment)
+- [🤝 Contributing](#🤝-contributing)
+- [👤 Author](#👤-author)
+- [📝 License](#📝-license)
 
-## Features
+## 🚀 Features
 
 - User registration and authentication
 - Tuition job posting
@@ -23,7 +23,7 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 - Application submission for tutors
 - Dashboard with statistics
 
-## Project Links
+## 🔗 Project Links
 
 ### Live Link
 - Live API: [https://learn-match-api.onrender.com](https://learn-match-api.onrender.com)
@@ -32,7 +32,7 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 - Source Code: [https://github.com/ashiqur-shohan/Learn-Match](https://github.com/ashiqur-shohan/Learn-Match)
 - Live link: [https://learn-match.netlify.app/](https://learn-match.netlify.app/)
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - Django Rest Framework
 - SQLite
@@ -40,12 +40,12 @@ Learn Match is a tuition finding platform that connects tutors with tutoring opp
 - Git & GitHub (version control)
 - Django ORM
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Python 3.x
 - pip
 
-## Installation and Run the Project
+## 📦 Installation and Run the Project
 
 1. Clone the repository:
 ```bash
@@ -74,7 +74,7 @@ The application should now be running at
 http://localhost:8000
 ```
 
-## API Endpoints
+## 🛣️ API Endpoints
 
 ### Authentication
 - `POST /api/user/register/`: Register a new user
@@ -100,7 +100,7 @@ http://localhost:8000
 - `GET /api/dashboard/stats/`: Retrieve dashboard statistics (total teachers, applications, live tuitions)
 
 
-## Deployment
+## 🚀 Deployment
 
 This project is deployed using [Render](https://render.com). To deploy your own instance of Learn Match, follow these steps:
 
@@ -140,17 +140,21 @@ For more detailed instructions, refer to Render's [Python deployment guide](http
 
 **Note:** Make sure to update your `settings.py` file to use environment variables for sensitive information and to accommodate the production environment.
 
+## ⭐️ Show your support
 
-## Contributing
+Give a ⭐️ if you like this project!
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## 🤝 Contributing
 
-## Contact
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/ashiqur-shohan/Learn-Match---API.git/issues).
 
-For any inquiries, please contact:
-- E-mail - ashiqur.shohan@gmail.com
-- What's app - +8801633640145
+## 👤 Author
 
-## License
+Ashiqur Rahman Shohan
+- GitHub: [@ashiqur-shohan](https://github.com/ashiqur-shohan)
+- LinkedIn: [ashiqur-shohan](https://www.linkedin.com/in/ashiqur-shohan/)
+- LeetCode: [ashiqur-shohan](https://leetcode.com/u/ashiqur_shohan/)
+
+## 📝 License
 
 This project is open source and available under the [MIT License](License.md).
