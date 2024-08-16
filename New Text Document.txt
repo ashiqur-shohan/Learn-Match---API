@@ -1,0 +1,13 @@
+admin/
+tuition/ (get all tuition list)
+tuition/?tuition_id= (get specific tuition details)
+tuition/?search=  ( search tuition with keyword
+user/register (to register a user)
+user/login ( to login a user)
+user/change-password (change password of the user)
+user/logout/ ( to log out the user)
+dashboard/stats/   (get request to show totalt teachers,application, live tuitions)
+
+
+application/?teacher_id=   (get method to get specific teacher application)
+application/delete/<int:pk>  (delete specific application by id)
